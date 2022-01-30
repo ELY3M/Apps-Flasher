@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">appsflash</string>
+    <string name="total_Installed_Apps">Total Apps: </string>
+    <string name="total_Checked_Apps">Total Enabled Apps: </string>
+    <string name="app_package_name">package name: </string>
+    <string name="search">Search</string>
+    <string name="settings_title">Settings</string>	
+    <string name="strobe_length">Set time for strobe to be running</string>
+    <string name="url">Url or IP Address to your smart hub or your server</string>
+</resources>

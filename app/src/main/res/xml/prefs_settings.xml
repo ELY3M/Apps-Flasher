@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory
+        android:title="@string/settings_title">
+		
+        <SeekBarPreference
+            android:key="strobe_length"
+            android:max="60000"
+            android:summary="Strobe Length: %s"
+            android:title="@string/strobe_length" />
+
+        <EditTextPreference
+            android:key="url"
+            android:title="@string/url"
+            android:summary="Url or IP: %s"
+            android:persistent="true" />
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
