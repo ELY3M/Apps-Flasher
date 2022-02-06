@@ -19,10 +19,19 @@ class CameraAccess(private val mContext: Context) {
 
     private val camManager = mContext.getSystemService(Context.CAMERA_SERVICE) as CameraManager
 
-    fun stopStroboscope(){
-        Log.d("appsflash", "stopStroboscope: ")
-        shouldStroboscopeStop = true
+    fun startStroboscope(){
+        Log.d("appsflash", "Strobe Started")
+        Thread(stroboscope).start()
+        shouldStroboscopeStop = false
+        isStroboscopeRunning = false
     }
+
+    fun stopStroboscope(){
+        Log.d("appsflash", "Strobe Stopped")
+        shouldStroboscopeStop = true
+        isStroboscopeRunning = false
+    }
+
 
     fun toggleStroboscope(): Boolean {
         if (!isStroboscopeRunning) {
@@ -63,7 +72,7 @@ class CameraAccess(private val mContext: Context) {
                         Thread.sleep(50) //timer between flashes
                         camManager.setTorchMode(cameraId, false)
                         Thread.sleep(50) //timer between flashes
-                        Log.d("CameraAccess", "Pass ")
+                        ///Log.d("appsflash", "CameraAccess Pass ")
                     } catch (e: Exception) {
                         e.printStackTrace()
                         shouldStroboscopeStop = true

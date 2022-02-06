@@ -21,6 +21,7 @@ class NotificationService : NotificationListenerService() {
     private lateinit var sp: SharedPreferences
     lateinit var mCameraImpl: CameraAccess
     private val notificationScope = MainScope()
+    private var stroberunning = false
 
     override fun onCreate() {
         super.onCreate()
@@ -68,18 +69,25 @@ class NotificationService : NotificationListenerService() {
 
             if (load(pack)) {
 
-                    Log.d("appsflash", "FLASH => "+pack)
+
                     Log.i("appsflash","Strobe Time: "+strobeTime)
 
-                        //StrobeLight()
-                        Timer().schedule(object : TimerTask() {
-                            override fun run() {
-                                    mCameraImpl.toggleStroboscope()
-                                    //StrobeLight()
-                            }
-                        }, strobeTime.toLong()) //was 1500
-                        StrobeLight()
-                        mCameraImpl.stopStroboscope()
+                    //start strobe
+                    mCameraImpl.startStroboscope()
+                    Log.i("appsflash", "FLASH STARTED => "+pack)
+                    stroberunning = true
+                    //stop strobe at set timer
+                    Timer().schedule(object : TimerTask() {
+                        override fun run() {
+                            stroberunning = false
+                            mCameraImpl.stopStroboscope()
+                            StrobeLight()
+                        Log.i("appsflash", "FLASH STOPPED => "+pack)
+                    }
+                    }, strobeTime.toLong())
+                    //start script
+                    //StrobeLight()
+
 
             }
         }
@@ -87,7 +95,10 @@ class NotificationService : NotificationListenerService() {
 
     override fun onNotificationRemoved(sbn: StatusBarNotification) {
         Log.i("appsflash", "Notification Removed ${sbn.packageName}")
+        if (!stroberunning) {
+            Log.i("appsflash","Flash stopped on Notification Removed: "+sbn.packageName)
             mCameraImpl.stopStroboscope()
+        }
 
     }
 

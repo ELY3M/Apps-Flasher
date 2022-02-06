@@ -190,6 +190,9 @@ class AllInstalledAppActivity : AppCompatActivity() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        sp = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        val strobeTime = sp.getInt("strobe_length", 5000)
+
         return when (item.itemId) {
             //R.id.app_search -> {
             //    Toast.makeText(applicationContext, "click on setting", Toast.LENGTH_LONG).show()
@@ -200,14 +203,24 @@ class AllInstalledAppActivity : AppCompatActivity() {
                 startActivity(intent)
                 return true
             }
-            R.id.app_flashlight -> {
-                if (stroberunning == false) {
-                    stroberunning = true
-                    mCameraImpl.toggleStroboscope()
-                } else {
-                    stroberunning = false;
-                    mCameraImpl.stopStroboscope()
-                }
+            R.id.app_flashlight_on -> {
+
+                mCameraImpl.startStroboscope()
+                stroberunning = true
+
+                Timer().schedule(object : TimerTask() {
+                    override fun run() {
+                        mCameraImpl.stopStroboscope()
+                        stroberunning = false
+                    }
+                }, strobeTime.toLong())
+
+                return true
+            }
+            R.id.app_flashlight_off -> {
+
+                mCameraImpl.stopStroboscope()
+                stroberunning = false
                 return true
             }
             else -> super.onOptionsItemSelected(item)

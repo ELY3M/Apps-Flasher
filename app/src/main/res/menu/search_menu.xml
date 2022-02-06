@@ -7,7 +7,7 @@
         android:id="@+id/app_search"
         android:icon="@drawable/search_icon_160"
         android:title="@string/search"
-        app:showAsAction="ifRoom|withText"
+        app:showAsAction="always"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
 
@@ -16,14 +16,21 @@
         android:icon="@drawable/settings_cyan"
         android:title="Settings"
         android:name="Settings"
-        app:showAsAction="ifRoom|withText"/>
+        app:showAsAction="always"/>
 
     <item
-        android:id="@+id/app_flashlight"
-        android:icon="@drawable/lightbulb_icon"
-        android:title="Flashlight"
-        android:name="Flashlight"
-        app:showAsAction="ifRoom|withText"/>
+        android:id="@+id/app_flashlight_on"
+        android:icon="@drawable/lightbulb_on"
+        android:title="Flashlight on"
+        android:name="Flashlight off"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/app_flashlight_off"
+        android:icon="@drawable/lightbulb_off"
+        android:title="Flashlight off"
+        android:name="Flashlight off"
+        app:showAsAction="always"/>
 
 
 </menu>
