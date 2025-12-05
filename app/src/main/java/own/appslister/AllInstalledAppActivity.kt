@@ -124,9 +124,9 @@ class AllInstalledAppActivity : AppCompatActivity() {
         for (i in packs.indices) {
             val p = packs[i]
             if (!isSystemPackage(p)) {
-                val appName = p.applicationInfo.loadLabel(packageManager).toString()
-                val icon = p.applicationInfo.loadIcon(packageManager)
-                val packages = p.applicationInfo.packageName
+                val appName = p.applicationInfo!!.loadLabel(packageManager).toString()
+                val icon = p.applicationInfo!!.loadIcon(packageManager)
+                val packages = p.applicationInfo!!.packageName
                 installedAppsList.add(AppModel(appName, icon, packages))
             }
         }
@@ -141,7 +141,7 @@ class AllInstalledAppActivity : AppCompatActivity() {
         }
     }
     private fun isSystemPackage(pkgInfo: PackageInfo): Boolean {
-        return pkgInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
+        return pkgInfo.applicationInfo!!.flags and ApplicationInfo.FLAG_SYSTEM != 0
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
