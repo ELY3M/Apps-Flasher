@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace = 'own.appslister'
+    namespace = 'own.appsflasher'
     compileSdk 36
 
     defaultConfig {
-        applicationId "own.appslister"
-        minSdk 23
+        applicationId "own.appsflasher"
+        minSdk 24
         versionCode 101
         versionName "1.0.1"
 

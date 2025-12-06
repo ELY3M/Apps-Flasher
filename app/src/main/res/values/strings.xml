@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">appsflash</string>
+    <string name="app_name">Apps Flasher</string>
     <string name="total_Installed_Apps">Total Apps: </string>
     <string name="total_Checked_Apps">Total Enabled Apps: </string>
     <string name="app_package_name">package name: </string>

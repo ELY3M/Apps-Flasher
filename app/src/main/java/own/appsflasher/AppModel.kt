@@ -1,4 +1,4 @@
-package own.appslister
+package own.appsflasher
 
 import android.graphics.drawable.Drawable
 

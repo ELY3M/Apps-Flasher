@@ -1,4 +1,4 @@
-package own.appslister
+package own.appsflasher
 
 import android.annotation.SuppressLint
 import android.content.pm.ApplicationInfo
@@ -199,7 +199,7 @@ class AllInstalledAppActivity : AppCompatActivity() {
             //    true
             //}
             R.id.app_settings -> {
-                val intent = Intent(this, own.appslister.Settings::class.java)
+                val intent = Intent(this, own.appsflasher.Settings::class.java)
                 startActivity(intent)
                 return true
             }
